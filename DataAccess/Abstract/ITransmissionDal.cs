@@ -5,8 +5,7 @@ using System.Text;
 
 namespace DataAccess.Abstract
 {
-    public interface ICarDal : IEntityRepository <Car>
+    interface ITransmissionDal : IEntityRepository<Transmission>
     {
-
     }
 }

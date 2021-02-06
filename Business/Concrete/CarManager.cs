@@ -19,8 +19,17 @@ namespace Business.Concrete
 
         public void Add(Car car)
         {
-            _carDal.Add(car);
-            Console.WriteLine("Id'si " + car.CarId + " olan araç sisteme eklendi");
+            if (car.Description.Length > 2 && car.DailyPrice > 0)
+            { 
+                _carDal.Add(car);
+                Console.WriteLine("Id'si " + car.CarId + " olan araç sisteme eklendi");
+            }
+            
+            else
+            {
+                Console.WriteLine("Hatalı giriş : Aracın günlük ücreti ve/veya araç adı hatalı");
+            }
+
         }
 
         public void Delete(Car car)
@@ -39,10 +48,20 @@ namespace Business.Concrete
             _carDal.Update(car);
             Console.WriteLine("Id'si " + car.CarId + " olan araç güncellendi");
         }
-        public List<Car> GetById(int Id)
+
+        public List<Car> GetByColorId(int id)
         {
-            return _carDal.GetById(Id);
+            return _carDal.GetAll(c=>c.ColorId==id);
         }
 
+        public List<Car> GetByBrandId(int id)
+        {
+            return _carDal.GetAll(c => c.BrandId == id); 
+        }
+
+        public List<Car> GetByTransmissionId(int id)
+        {
+            return _carDal.GetAll(c => c.TransmissionId == id);
+        }
     }
 }
